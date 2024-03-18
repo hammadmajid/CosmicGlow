@@ -1,0 +1,63 @@
+---
+const routes: string[] = ['Home', 'Pricing', 'Docs', 'Blog'];
+---
+
+<nav class="md:flex justify-between items-center bg-slate-50 text-slate-900 border-b-2 border-b-slate-300">
+    <div class="px-8 py-4 flex justify-between items-center ">
+        <!-- Brand -->
+        <div>
+            <!-- TODO: replace with actual logo-->
+            <a href="/">Astrap</a>
+        </div>
+
+        <!-- Toggle -->
+        <button class="md:hidden py-1 px-3 rounded-md text-lg active:bg-teal-200 hover:bg-teal-200" id="toggle-button"
+                aria-label="Navigation toggle button"><i
+                class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <!-- Collapsable -->
+    <div class="hidden flex-col gap-y-2 md:flex md:flex-row justify-center items-center md:gap-x-4 md:pr-8 py-4 text-center" id="nav-menu">
+        <!-- Links -->
+        <ul class="md:flex gap-x-3">
+            {
+                routes.map(value => {
+                    return (
+                            <li>
+                                <a href={value.toLowerCase()}
+                                   class="block rounded-md w-full p-2 hover:bg-teal-200">{value}</a>
+                            </li>
+                    )
+                })
+            }
+
+        </ul>
+
+        <!-- Search -->
+        <form>
+            <label for="search"/>
+            <input id="search" type="search" placeholder="Search the site"
+                   class="p-2 rounded-md outline-1 outline-teal-200 active:border-teal-200"
+            />
+        </form>
+
+        <!-- CTA -->
+        <a href="/login" class="block w-max px-4 py-2 bg-slate-200 hover:bg-slate-300 rounded-md transition-colors">
+            Login
+        </a>
+
+        <a href="/register" class="block w-max px-4 py-2 bg-teal-200 hover:bg-teal-300 rounded-md transition-colors">
+            Register
+        </a>
+    </div>
+</nav>
+
+<script>
+    const toggleButton: HTMLElement = document.getElementById('toggle-button');
+    const navMenu: HTMLElement = document.getElementById('nav-menu');
+
+    toggleButton.addEventListener('click', () => {
+        navMenu.classList.toggle('flex');
+        navMenu.classList.toggle('hidden');
+    });
+</script>
